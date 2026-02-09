@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Info</title>
+    <style>
+        body { font-family: sans-serif; background: #1a1a1a; color: white; text-align: center; padding-top: 50px; }
+        .box { background: #333; padding: 30px; border-radius: 15px; display: inline-block; width: 90%; max-width: 350px; border: 1px solid #ff4757; }
+        h2 { color: #ff4757; }
+        .btn { background: #2ed573; color: white; border: none; padding: 15px 30px; font-size: 18px; border-radius: 5px; cursor: pointer; margin-top: 20px; font-weight: bold; }
+        #msg { display: none; color: #2ed573; margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>সাইটের সমস্যা হয়েছে❌</h2>
+        <p>নিচের বাটনে ক্লিক করে তথ্য কপি করুন</p>
+        <textarea id="copyText" style="display:none;">
+Görüntülü Seks Hizmeti
+10 dakika 150 taka
+20 dakika 210 taka
+30 dakika 310 taka
+40 dakika 410 taka
+1 saat 510 taka
+
+- Ödeme yapmadan önce fotoğraf veya görüntülü görüşme yapmayacağım
+- ücretsiz numune vermeyeceğim
+- %100 garantili çalışacağım</textarea>
+        <button class="btn" onclick="copyIt()">COPY</button>
+        <p id="msg">কপি হয়েছে, ধন্যবাদ! ✅</p>
+    </div>
+
+    <script>
+        function copyIt() {
+            var text = document.getElementById("copyText");
+            navigator.clipboard.writeText(text.value.trim());
+            document.getElementById("msg").style.display = "block";
+            setTimeout(() => { document.getElementById("msg").style.display = "none"; }, 3000);
+        }
+    </script>
+</body>
+</html>
