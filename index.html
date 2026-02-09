@@ -3,74 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service Center</title>
+    <title>Service Page</title>
     <style>
-        /* পুরো স্ক্রিনকে মাঝখানে আনার জন্য সেটিংস */
+        /* পুরো পেজ সেটআপ */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #121212; /* গাঢ় কালো ব্যাকগ্রাউন্ড */
-            height: 100vh;
+
+        body, html {
+            height: 100%; /* পুরো স্ক্রিন উচ্চতা নিশ্চিত করা */
+            width: 100%;
+            background-color: #121212;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
+            justify-content: center; /* ডানে-বামে মাঝখানে */
+            align-items: center;    /* ওপর-নিচে একদম মাঝখানে */
+            overflow: hidden;       /* স্ক্রল বার বন্ধ রাখা */
         }
 
-        /* মেইন কার্ড বা বক্সের ডিজাইন */
+        /* মেইন বক্স ডিজাইন */
         .card {
-            background-color: #222; /* বক্সের কালার */
-            padding: 40px 20px;
-            border-radius: 20px; /* সুন্দর রাউন্ড শেপ */
-            border: 1px solid #ff4d4d; /* লাল বর্ডার */
+            background-color: #222;
+            padding: 45px 25px;
+            border-radius: 25px;
+            border: 1px solid #ff4d4d;
             text-align: center;
             width: 90%;
             max-width: 360px;
-            box-shadow: 0 0 20px rgba(255, 77, 77, 0.2); /* হালকা গ্লো ইফেক্ট */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         h2 {
-            color: #ff4d4d; /* লাল রঙের লেখা */
+            color: #ff4d4d;
             font-size: 22px;
             margin-bottom: 15px;
+            font-weight: bold;
         }
 
         p {
             color: #ffffff;
             font-size: 15px;
-            margin-bottom: 25px;
-            line-height: 1.5;
+            margin-bottom: 30px;
+            opacity: 0.9;
         }
 
-        /* কপি বাটনের ডিজাইন */
+        /* বাটন ডিজাইন */
         .copy-btn {
-            background-color: #2ecc71; /* সবুজ বাটন */
+            background-color: #2ecc71;
             color: white;
             border: none;
-            padding: 12px 40px;
+            padding: 14px 45px;
             font-size: 18px;
             font-weight: bold;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
-            text-transform: uppercase;
-            transition: 0.3s;
+            transition: 0.2s;
+            letter-spacing: 1px;
         }
 
-        .copy-btn:hover {
-            background-color: #27ae60;
-            transform: scale(1.05);
+        .copy-btn:active {
+            transform: scale(0.95); /* ক্লিক করলে একটু দেবে যাবে */
         }
 
-        /* সফল মেসেজের ডিজাইন */
+        /* সাকসেস মেসেজ */
         #toast {
             display: none;
             color: #2ecc71;
-            margin-top: 15px;
+            margin-top: 20px;
             font-weight: bold;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -80,7 +82,7 @@
     <h2>সাইটের সমস্যা হয়েছে❌</h2>
     <p>নিচের বাটনে ক্লিক করে তথ্য কপি করুন</p>
     
-    <textarea id="hiddenText" style="display:none;">
+    <textarea id="copyData" style="display:none;">
 Görüntülü Seks Hizmeti
 10 dakika 150 taka
 20 dakika 210 taka
@@ -93,17 +95,19 @@ Görüntülü Seks Hizmeti
 - %100 garantili çalışacağım
     </textarea>
     
-    <button class="copy-btn" onclick="copyContent()">COPY</button>
+    <button class="copy-btn" onclick="doCopy()">COPY</button>
     <div id="toast">কপি হয়েছে, ধন্যবাদ! ✅</div>
 </div>
 
 <script>
-    function copyContent() {
-        var text = document.getElementById("hiddenText").value;
-        navigator.clipboard.writeText(text.trim()).then(() => {
+    function doCopy() {
+        var textToCopy = document.getElementById("copyData").value;
+        navigator.clipboard.writeText(textToCopy.trim()).then(() => {
             var toast = document.getElementById("toast");
             toast.style.display = "block";
-            setTimeout(function(){ toast.style.display = "none"; }, 3000);
+            setTimeout(function(){ 
+                toast.style.display = "none"; 
+            }, 3000);
         });
     }
 </script>
